@@ -1,22 +1,66 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="de">
 	<head>
 		<meta charset="UTF-8" />
+		<meta name="description" content="Meine App - Die beste Lösung für Ihre Bedürfnisse" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
 	</head>
 	<body>
-		<slot />
+		<nav class="bg-white shadow-sm fixed w-full top-0 z-50">
+			<div class="container mx-auto px-4">
+				<div class="flex justify-between items-center h-16">
+					<a href="/" class="text-xl font-bold text-gray-800">Meine App</a>
+					<div class="space-x-4">
+						<a href="/" class="text-gray-600 hover:text-gray-900">Home</a>
+						<a href="#features" class="text-gray-600 hover:text-gray-900">Features</a>
+						<a href="#download" class="text-gray-600 hover:text-gray-900">Download</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<div class="pt-16">
+			<slot />
+		</div>
+
+		<footer class="bg-gray-800 text-white py-8">
+			<div class="container mx-auto px-4">
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+					<div>
+						<h3 class="text-lg font-semibold mb-4">Meine App</h3>
+						<p class="text-gray-400">Die beste Lösung für Ihre Bedürfnisse</p>
+					</div>
+					<div>
+						<h3 class="text-lg font-semibold mb-4">Links</h3>
+						<ul class="space-y-2">
+							<li><a href="#features" class="text-gray-400 hover:text-white">Features</a></li>
+							<li><a href="#download" class="text-gray-400 hover:text-white">Download</a></li>
+						</ul>
+					</div>
+					<div>
+						<h3 class="text-lg font-semibold mb-4">Kontakt</h3>
+						<p class="text-gray-400">info@meine-app.de</p>
+					</div>
+				</div>
+				<div class="text-center mt-8 pt-8 border-t border-gray-700">
+					<p>&copy; {new Date().getFullYear()} Meine App. Alle Rechte vorbehalten.</p>
+				</div>
+			</div>
+		</footer>
 	</body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+<style is:global>
+	@import '../styles/global.css';
 </style>
